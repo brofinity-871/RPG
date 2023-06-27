@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Item.h"
+#include "Item.cpp"
 #include <vector>
 
 int main() {
@@ -15,12 +15,15 @@ int main() {
 	std::cout << std::endl;
 	band->item_info();
 	std::cout << std::endl;
+	wep->item_info();
+	std::cout << std::endl;
 
 	std::cout << "Hello World" << std::endl;
 
 	delete def;
 	delete charm;
 	delete band;
+	delete wep;
 
 	return 0;
 }
