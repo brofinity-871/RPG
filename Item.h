@@ -1,13 +1,15 @@
-#pragma once
+
+#ifndef ITEM_H
+#define ITEM_H
 
 /*	WELCOME TO ITEM CLASS
-* This file includes:
+*	ALL ITEMS WILL HAVE 'BOOST' characteristics and used as traits/properties
+
+This file includes:
 *	- Armor
 *	- Necklace
 *	- Ring
 *	- Weapon
-* 
-* 
 * 
 * Plan to include other kinds of items. The 4 above are for equipping onto a character (single)
 * Future items will have additional charactersitcs.
@@ -18,10 +20,48 @@
 #include <iostream>
 #include <string>
 
+struct Boost{
+	// Variables
+	int health, mana, defense, damage;
+	
+	// Constructor
+	Boost(){
+		health = 100;
+		mana = 50;
+		defense = 10;
+		damage = 5;
+	}
+	Boost(int hp, int mp, int def, int dp){
+		health = hp;
+		mana = mp;
+		defense = def;
+		damage = dp;
+	}
+
+	// Functions
+	void boost_info(){
+		std::cout << "\t-Boost Information-\nHealth: " << health << "\tMana: " << mana << std::endl;
+		std::cout << "Defense: " << defense << "\tDamage: " << damage << std::endl;
+	}
+	void addBoost(int hp, int mp, int def, int dp){
+		health += hp;
+		mana += mp;
+		defense += def;
+		damage += dp;
+	}
+	void subtractBoost(int hp, int mp, int def, int dp){
+		health -= hp;
+		mana -= mp;
+		defense -= def;
+		damage -= dp;
+	}
+};
+
 class Item {
 private:
 	int rarity;
 	bool equip;
+	Boost stats;
 public:
 	// Constructor
 	Item();
@@ -30,8 +70,10 @@ public:
 	// Accessors
 	void setRarity(int r);
 	void setEquip(bool e);
+	void setBoost(int hp, int mp, int def, int dp);
 	int getRarity();
 	bool getEquip();
+	Boost getBoost();
 
 	// Virtual Functions
 	virtual void item_info() = 0;
@@ -41,7 +83,7 @@ public:
 class Armor : public Item {
 private:
 	std::string armor_name;
-	int defense;
+	//int defense;
 public:
 	// Constructor(s)
 	Armor();
@@ -50,9 +92,9 @@ public:
 	
 	// Accessors
 	void setName(std::string nm);
-	void setDefense(int def);
+	//void setDefense(int def);
 	std::string getName();
-	int getDefense();
+	//int getDefense();
 
 	// Armor Functions
 	void item_info();
@@ -120,3 +162,6 @@ public:
 	void item_info();
 	~Weapon();
 };
+
+
+#endif //ITEM_H

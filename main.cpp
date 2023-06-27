@@ -4,6 +4,10 @@
 
 int main() {
 	
+	Boost b = Boost(100, 250, 45, 20);
+	b.boost_info();
+	std::cout << std::endl;
+
 	Item* def = new Armor("Demonic Shield", 169, -1, true);
 	Item* charm = new Necklace("Ghostly Choker", 400, -1, true);
 	Item* band = new Ring("Mini-Death", 600, -1, true);

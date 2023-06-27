@@ -4,17 +4,21 @@
 Item::Item() {
 	setRarity(0);
 	setEquip(false);
+	setBoost(0, 0, 0, 0);
 	std::cout << "Item created.[base]" << std::endl;
 }
 Item::Item(int r) {
 	setRarity(r);
 	setEquip(false);
+	setBoost(0, 0, 0, 0);
 	std::cout << "Item created.[Special]" << std::endl;
 }
 void Item::setRarity(int r) { rarity = r; }
 void Item::setEquip(bool e) { equip = e; }
+void Item::setBoost(int hp, int mp, int def, int dp){ stats.addBoost(hp, mp, def, dp); }
 int Item::getRarity() { return rarity; }
 bool Item::getEquip() { return equip; }
+Boost Item::getBoost() { return stats;}
 Item::~Item() {
 	std::cout << "Item deleted." << std::endl;
 }
@@ -24,30 +28,33 @@ Armor::Armor() {
 	setRarity(0);
 	setEquip(false);
 	setName("Soft Blanket");
-	setDefense(1);
+	//setDefense(1);
+	setBoost(0, 0, 10, 0);
 	std::cout << "Armor created.[basic]" << std::endl;
 }
 Armor::Armor(std::string nm, int def) {
 	setRarity(0);
 	setEquip(false);
 	setName(nm);
-	setDefense(def);
+	//setDefense(def);
+	setBoost(0, 0, def, 0);
 	std::cout << "Armor created.[Different-n,b]" << std::endl;
 }
 Armor::Armor(std::string nm, int def, int r, bool e) {
 	setRarity(r);
 	setEquip(e);
 	setName(nm);
-	setDefense(def);
+	//setDefense(def);
+	setBoost(0, 0, def, 0);
 	std::cout << "Armor created. [Special]" << std::endl;
 }
 void Armor::setName(std::string nm) { armor_name = nm; }
-void Armor::setDefense(int def) { defense = def; }
+//void Armor::setDefense(int def) { defense = def; }
 std::string Armor::getName() { return armor_name; }
-int Armor::getDefense() { return defense; }
+//int Armor::getDefense() { return defense; }
 void Armor::item_info() {
 	std::cout << "\t-Armor Information -\n-Name: " << getName() << "\tRarity: " << getRarity() <<  std::endl;
-	std::cout << "Defense: " << getDefense() << "\tEquip: " << getEquip() << std::endl;
+	std::cout << "Defense: " << getBoost().defense << "\tEquip: " << getEquip() << std::endl;
 }
 Armor::~Armor() {
 	std::cout << "Armor deleted." << std::endl;
