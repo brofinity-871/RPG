@@ -24,7 +24,7 @@ struct Boost{
 	// Variables
 	int health, mana, defense, damage;
 	
-	// Constructor
+	// Constructor(s)
 	Boost(){
 		health = 100;
 		mana = 50;
@@ -38,9 +38,15 @@ struct Boost{
 		damage = dp;
 	}
 
-	// Functions
+	// Boost Function
+	void set_boost(int hp, int mp, int def, int dp){
+		health = hp;
+		mana = mp;
+		defense = def;
+		damage = dp;
+	}
 	void boost_info(){
-		std::cout << "\t-Boost Information-\nHealth: " << health << "\tMana: " << mana << std::endl;
+		std::cout << "Health: " << health << "\tMana: " << mana << std::endl;
 		std::cout << "Defense: " << defense << "\tDamage: " << damage << std::endl;
 	}
 	void addBoost(int hp, int mp, int def, int dp){
@@ -49,11 +55,23 @@ struct Boost{
 		defense += def;
 		damage += dp;
 	}
+	void addBoost(Boost stats){
+		health += stats.health;
+		mana += stats.mana;
+		defense += stats.defense;
+		damage += stats.damage;
+	}
 	void subtractBoost(int hp, int mp, int def, int dp){
 		health -= hp;
 		mana -= mp;
 		defense -= def;
 		damage -= dp;
+	}
+	void subtractBoost(Boost stats){
+		health -= stats.health;
+		mana -= stats.mana;
+		defense -= stats.defense;
+		damage -= stats.damage;
 	}
 };
 
@@ -63,6 +81,8 @@ private:
 	bool equip;
 	Boost stats;
 public:
+	// Variable 
+	int id = 0;
 	// Constructor
 	Item();
 	Item(int rarity);
@@ -104,18 +124,18 @@ public:
 class Necklace : public Item {
 private:
 	std::string necklace_name;
-	int health;
+	//int health;
 public:
 	// Constructor(s)
 	Necklace();
-	Necklace(std::string nm, int ma);
-	Necklace(std::string nm, int ma, int r, int e);
+	Necklace(std::string nm, int hp);
+	Necklace(std::string nm, int hp, int r, int e);
 
 	// Accessors
 	void setName(std::string nm);
-	void setHealth(int ma);
+	//void setHealth(int ma);
 	std::string getName();
-	int getHealth();
+	//int getHealth();
 
 	// Necklace Functions
 	void item_info();
@@ -125,27 +145,28 @@ public:
 class Ring : public Item {
 private:
 	std::string ring_name;
-	int mana;
+	//int mana;
 public:
 	// Constructor(s)
 	Ring();
-	Ring(std::string nm, int ma);
-	Ring(std::string nm, int ma, int r, bool e);
+	Ring(std::string nm, int mp);
+	Ring(std::string nm, int mp, int r, bool e);
 
 	// Accessors
 	void setName(std::string nm);
-	void setMana(int ma);
+	//void setMana(int ma);
 	std::string getName();
-	int getMana();
+	//int getMana();
 
 	// Ring Function
 	void item_info();
 	~Ring();
 };
+
 class Weapon : public Item {
 private:
 	std::string weapon_name;
-	int damage;
+	//int damage;
 public:
 	// Constructors
 	Weapon();
@@ -154,9 +175,9 @@ public:
 
 	// Accessors
 	void setName(std::string nm);
-	void setDamage(int dp);
+	//void setDamage(int dp);
 	std::string getName();
-	int getDamage();
+	//int getDamage();
 
 	// Weapon Function
 	void item_info();
