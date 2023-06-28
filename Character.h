@@ -14,13 +14,14 @@ private:
     std::vector<Item*> bag;
     Boost traits;
     // need equippable items different from bag
+    // Item* equipped[4] = nullptr;   // [0] = armor, [1] = necklace, [2] = ring, [3] = weapon
 public:
     // Constructor(s)
     Character();
+    Character(std::string nm, Boost sts);
 
     // Accessors
     void setName(std::string nm);
-    void setBag();
 //void setTraits();
     std::string getName();
     std::vector<Item*> getBag();
@@ -28,7 +29,9 @@ public:
 
     // Character Functions
     //Boost total_stats();
-    
+    void character_info();
+    void printBag();
+    void addItem(Item* itm);
 
     ~Character();
 };
