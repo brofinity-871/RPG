@@ -32,6 +32,7 @@ public:
     void character_info();
     void printBag();
     void addItem(Item* itm);
+    Item* removeItem();
 
     ~Character();
 };
