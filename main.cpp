@@ -1,9 +1,10 @@
 #include <iostream>
 #include "Item.cpp"
 #include <vector>
-#include "Character.cpp"
+#include "Menu.cpp"
 
 int main() {
+	
 	
 	Boost b = Boost(100, 250, 45, 20);
 	b.boost_info();
@@ -30,17 +31,11 @@ int main() {
 	delete band;
 	delete wep;
 
-	std::cout << std::endl;
+	Menu* game = new Start();
 
-	Character me = Character("Shiva", Boost(100, 100, 100, 100));
-	me.addItem(new Armor("Blanket", 1, 1, true));
-	me.addItem(new Necklace("Bib", 10, 1, true));
-	me.addItem(new Ring("Grass-Loop", 5, 1, true));
-	me.addItem(new Weapon("Twig", 2, 1, true));
-	
-	me.character_info();
+	game->display_menu();
 
-
+	delete game;
 
 	return 0;
 }

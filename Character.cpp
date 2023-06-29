@@ -54,6 +54,7 @@ void Character::addItem(Item* itm){
         bag.push_back(itm);
     }
 }
+/*
 Item* Character::removeItem(){
     // There should be options to not want to remove an item, and to select which item to remove.
     // Should not be possible to be stuck within loop!
@@ -79,6 +80,7 @@ Item* Character::removeItem(){
             std::cout << "Invalid Input. Please try again." << std::endl;
     } while (!remove);
 }
+*/
 Character::~Character(){
     std::vector<Item*>::iterator itr = bag.begin();
     for(itr; itr != bag.end(); ++itr){
