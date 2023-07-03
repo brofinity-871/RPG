@@ -6,7 +6,6 @@
 
 int main() {
 	
-	
 	Boost b = Boost(100, 250, 45, 20);
 	b.boost_info();
 	std::cout << std::endl;
@@ -41,6 +40,8 @@ int main() {
 	me.addItem(new Weapon("Twig", 2, 1, true));
 	
 	me.character_info();
+	me.removeItem();
+	me.printBag();
 
 	Menu* game = new Start();
 	game->display_menu();

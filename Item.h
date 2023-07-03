@@ -20,6 +20,60 @@ This file includes:
 #include <iostream>
 #include <string>
 
+std::string print_rarity(int r){
+	if (r == 0){
+		return "None";
+	}
+	else if (r == 1){
+		return "Common";
+	}
+	else if (r == 2){
+		return "Uncommon";
+	}
+	else if (r == 3){
+		return "Rare";
+	}
+	else if (r == 4){
+		return "Ultra-Rare";
+	}
+	else if (r == 5){
+		return "Legendary";
+	}
+	else if (r == 6){
+		return "Mythic";
+	}
+	else if (r == 7){
+		return "One-of-a-Kind";
+	}
+	else{
+		return "Mystery";
+	}
+}
+std::string print_equip(bool e){
+	if (e){
+		return "Can Equip";
+	}
+	else
+		return "Can NOT Equip";
+}
+std::string print_itemType(int t){
+	if (t == 1){
+		return "Armor";
+	}
+	else if (t == 2){
+		return "Necklace";
+	}
+	else if (t == 3){
+		return "Ring";
+	}
+	else if (t == 4){
+		return "Weapon";
+	}
+	else{
+		return "Unknown";
+	}
+}
+
 struct Boost{
 	// Variables
 	int health, mana, defense, damage;
@@ -77,12 +131,13 @@ struct Boost{
 
 class Item {
 private:
+	std::string item_name;
 	int rarity;
 	bool equip;
 	Boost stats;
 public:
 	// Variable 
-	int id = 0;
+	int item_type = 0;
 	// Constructor
 	Item();
 	Item(int rarity);
@@ -91,9 +146,14 @@ public:
 	void setRarity(int r);
 	void setEquip(bool e);
 	void setBoost(int hp, int mp, int def, int dp);
+	void setName(std::string n);
 	int getRarity();
 	bool getEquip();
 	Boost getBoost();
+	std::string getName();
+
+	// Item Functions
+	void basic_itemInfo();
 
 	// Virtual Functions
 	virtual void item_info() = 0;
@@ -102,7 +162,7 @@ public:
 
 class Armor : public Item {
 private:
-	std::string armor_name;
+	//std::string armor_name;
 	//int defense;
 public:
 	// Constructor(s)
@@ -111,9 +171,9 @@ public:
 	Armor(std::string nm, int def, int r, bool e);
 	
 	// Accessors
-	void setName(std::string nm);
+	//void setName(std::string nm);
 	//void setDefense(int def);
-	std::string getName();
+	//std::string getName();
 	//int getDefense();
 
 	// Armor Functions
@@ -123,7 +183,7 @@ public:
 
 class Necklace : public Item {
 private:
-	std::string necklace_name;
+	//std::string necklace_name;
 	//int health;
 public:
 	// Constructor(s)
@@ -132,9 +192,9 @@ public:
 	Necklace(std::string nm, int hp, int r, int e);
 
 	// Accessors
-	void setName(std::string nm);
+	//void setName(std::string nm);
 	//void setHealth(int ma);
-	std::string getName();
+	//std::string getName();
 	//int getHealth();
 
 	// Necklace Functions
@@ -144,7 +204,7 @@ public:
 
 class Ring : public Item {
 private:
-	std::string ring_name;
+	//std::string ring_name;
 	//int mana;
 public:
 	// Constructor(s)
@@ -153,9 +213,9 @@ public:
 	Ring(std::string nm, int mp, int r, bool e);
 
 	// Accessors
-	void setName(std::string nm);
+	//void setName(std::string nm);
 	//void setMana(int ma);
-	std::string getName();
+	//std::string getName();
 	//int getMana();
 
 	// Ring Function
@@ -165,7 +225,7 @@ public:
 
 class Weapon : public Item {
 private:
-	std::string weapon_name;
+	//std::string weapon_name;
 	//int damage;
 public:
 	// Constructors
@@ -174,9 +234,9 @@ public:
 	Weapon(std::string nm, int dp, int r, bool e);
 
 	// Accessors
-	void setName(std::string nm);
+	//void setName(std::string nm);
 	//void setDamage(int dp);
-	std::string getName();
+	//std::string getName();
 	//int getDamage();
 
 	// Weapon Function

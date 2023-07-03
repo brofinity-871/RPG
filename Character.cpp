@@ -54,7 +54,6 @@ void Character::addItem(Item* itm){
         bag.push_back(itm);
     }
 }
-/*
 Item* Character::removeItem(){
     // There should be options to not want to remove an item, and to select which item to remove.
     // Should not be possible to be stuck within loop!
@@ -68,8 +67,8 @@ Item* Character::removeItem(){
     do{
         std::cout << " Select from the list which item to remove.[1 ~ " << bag.size() << "]" << std::endl;
         for(int i = 0; i < bag.size(); ++i){
-            std::cout << "\n[" << i + 1 << "]  ";
-            bag.at(i)->item_info();
+            std::cout << "\n[" << i + 1 << "]\tType: " << print_itemType(bag.at(i)->item_type) << std::endl;
+            std::cout << "  Name: " << bag.at(i)->getName() << "\tRarity: " << print_rarity(bag.at(i)->getRarity()) << std::endl;
         }
         std::cout << "To cancel 'removing an item', enter 'q'." << std::endl;
 
@@ -99,7 +98,6 @@ Item* Character::removeItem(){
     } while (!remove);
     return removed;
 }
-*/
 Character::~Character(){
     std::vector<Item*>::iterator itr = bag.begin();
     for(itr; itr != bag.end(); ++itr){
