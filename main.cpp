@@ -40,7 +40,7 @@ int main() {
 	
 	me.character_info();
 
-
+	me.removeItem();
 
 	return 0;
 }

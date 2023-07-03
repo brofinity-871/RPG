@@ -57,27 +57,46 @@ void Character::addItem(Item* itm){
 Item* Character::removeItem(){
     // There should be options to not want to remove an item, and to select which item to remove.
     // Should not be possible to be stuck within loop!
+    // go-to visual studio 2022 to check this section/algorithm of removing an item(PROPERLY)
     bool remove = false;
     if (bag.size() == 0){
         std::cout << "There are no items to remove!" << std::endl;
         return nullptr;
     }
+    Item* removed = nullptr;
     do{
         std::cout << " Select from the list which item to remove.[1 ~ " << bag.size() << "]" << std::endl;
         for(int i = 0; i < bag.size(); ++i){
-            std::cout << "[" << i + 1 << "]  ";
+            std::cout << "\n[" << i + 1 << "]  ";
             bag.at(i)->item_info();
         }
+        std::cout << "To cancel 'removing an item', enter 'q'." << std::endl;
 
-        int input;
-        std::cout << "Input: ";
-        if (input <= bag.size() && input >= 0){
-            return bag.at(input - 1);
+        char input;
+        std::cout << "\nInput: ";
+
+        std::cin >> input;
+        std::cin.ignore();
+
+        if (input <= char(48 + bag.size()) && input >= '1'){
+            //return bag.at(input - 1);
+            std::vector<Item*>::iterator itr = bag.begin();
+            itr += int(input) - 49;     // 49 = 1 + 48: 1 is for the shift of 0 to 1; 48 is the shift from char to int.
+            removed = *itr;
+            bag.erase(itr);
+            bag.shrink_to_fit();
             remove = true;
         }
-        else
+        else if (input == 'q'){
+            std::cout << "No longer removing item" << std::endl;
+            remove = true;
+        }
+        else {
             std::cout << "Invalid Input. Please try again." << std::endl;
+        }
+        std::cout << std::endl;
     } while (!remove);
+    return removed;
 }
 Character::~Character(){
     std::vector<Item*>::iterator itr = bag.begin();
