@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Item.cpp"
 #include <vector>
-#include "Character.cpp"
+#include "Menu.cpp"
+#include "Character.h"
 
 int main() {
+	
 	
 	Boost b = Boost(100, 250, 45, 20);
 	b.boost_info();
@@ -40,7 +42,10 @@ int main() {
 	
 	me.character_info();
 
-	me.removeItem();
+	Menu* game = new Start();
+	game->display_menu();
+
+	delete game;
 
 	return 0;
 }
