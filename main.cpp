@@ -2,7 +2,7 @@
 #include "Item.cpp"
 #include <vector>
 #include "Menu.cpp"
-#include "Character.h"
+#include "Character.cpp"
 
 int main() {
 	
