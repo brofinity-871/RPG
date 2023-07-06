@@ -5,7 +5,7 @@
 #include "Item.h"
 #include <vector>
 
-std::vector<std::string> equipped = {"Armor", "Necklace", "Ring", "Weapon"};
+std::vector<std::string> slot_equip = {"Armor", "Necklace", "Ring", "Weapon"};
 
 class Character{
 private:
@@ -14,7 +14,8 @@ private:
     std::vector<Item*> bag;
     Boost traits;
     // need equippable items different from bag
-    // Item* equipped[4] = nullptr;   // [0] = armor, [1] = necklace, [2] = ring, [3] = weapon
+    Item* equipped[4] = {nullptr, nullptr, nullptr, nullptr};   // [0] = armor, [1] = necklace, [2] = ring, [3] = weapon
+    
 public:
     // Constructor(s)
     Character();
@@ -33,6 +34,10 @@ public:
     void printBag();
     void addItem(Item* itm);
     Item* removeItem();
+    void equipItem();
+    void current_equip();
+    std::vector<Item*> filter_items(int t);
+    void _equip_item_(int type);
 
     ~Character();
 };

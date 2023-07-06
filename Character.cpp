@@ -55,9 +55,6 @@ void Character::addItem(Item* itm){
     }
 }
 Item* Character::removeItem(){
-    // There should be options to not want to remove an item, and to select which item to remove.
-    // Should not be possible to be stuck within loop!
-    // go-to visual studio 2022 to check this section/algorithm of removing an item(PROPERLY)
     bool remove = false;
     if (bag.size() == 0){
         std::cout << "There are no items to remove!" << std::endl;
@@ -96,7 +93,80 @@ Item* Character::removeItem(){
         }
         std::cout << std::endl;
     } while (!remove);
-    return removed;
+    if (removed != nullptr){
+        std::cout << removed->getName() << " is removed.\n" << std::endl;
+        return removed;
+    }
+    else{
+        return nullptr;
+    }
+}
+void Character::current_equip(){
+    // Prints all items that are currently equipped. Armor, Necklace, Ring, Weapon
+    std::cout << "\t-Equipped Items-" << std::endl;
+    for(int i = 0; i < 4; ++i){
+        if (equipped[i] == nullptr){
+            std::cout << slot_equip[i] << ": empty" << std::endl; 
+        }
+        else{
+            std::cout << slot_equip[i] << ": " << equipped[i]->getName() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+}
+void Character::equipItem(){
+    // Menu Interface to begin equipping an item
+    bool equip = false;
+    do{
+        std::cout << "Which item would you like to equip?" << std::endl;
+        for(int i = 0; i < slot_equip.size(); ++i){
+            std::cout << "  " << i + 1 << ".\t" << slot_equip[i] << std::endl;
+        }
+        std::cout << "To cancel 'equip an item', enter 'q'" << std::endl;
+
+        char input;
+        std::cin >> input;
+        std::cin.ignore();
+
+        if (input >= '1' && input <= char(48 + slot_equip.size())){
+            std::cout << "Equipping " << slot_equip[input - 49] << std::endl;
+            //_equip_item(input - 49);
+            equip = true;
+        }
+        else if (input == 'q'){
+            std::cout << "Quiting item equip" << std::endl;
+            equip = true;
+        }
+        else{
+            std::cout << "Invalid Input... " << std::endl;
+        }
+
+    } while(!equip);
+}
+void Character::_equip_item_(int type){
+    // 
+    std::vector<Item*> list = filter_items(type + 1);
+
+    if (list.size() == 0){
+        std::cout << "There are no " << slot_equip[type] << " items to equip" << std::endl;
+        return;
+    }
+
+    for(int i = 0; i < list.size(); ++i){
+        std::cout << i + 1 << ".\t";
+        list.at(i)->item_info();
+    }
+    
+}
+std::vector<Item*> Character::filter_items(int t){
+    // Filters the bag based on item_type. Returns all items with item_type == 't'
+    std::vector<Item*> equipables;
+    for(int i = 0; i < bag.size(); ++i){
+        if (bag.at(i)->item_type == t){
+            equipables.push_back(bag.at(i));
+        }
+    }
+    return equipables;
 }
 Character::~Character(){
     std::vector<Item*>::iterator itr = bag.begin();

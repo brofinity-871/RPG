@@ -5,6 +5,17 @@
 #include "Character.cpp"
 
 int main() {
+
+	Character bob = Character("Bobby McGwyar", Boost(1000, 4900, 300, 20));
+	bob.addItem(new Armor("Tank", 400, 6, true));
+	bob.addItem(new Weapon("Death's Sythe", 500, 6, true));
+
+	bob.character_info();
+
+	bob._equip_item_(1);
+
+
+	return 0;
 	
 	Boost b = Boost(100, 250, 45, 20);
 	b.boost_info();
@@ -38,16 +49,28 @@ int main() {
 	me.addItem(new Necklace("Bib", 10, 1, true));
 	me.addItem(new Ring("Grass-Loop", 5, 1, true));
 	me.addItem(new Weapon("Twig", 2, 1, true));
-	
+
 	me.character_info();
 	me.removeItem();
 	me.printBag();
 
-	Menu* game = new Start();
-	game->display_menu();
+	me.current_equip();
+	me.equipItem();
+	//Menu* game = new Start();
+	//game->display_menu();
 
-	delete game;
+	//delete game;
 
 	return 0;
 }
+
+/*
+'0' = 48
+'9' = 57
+'A' = 65
+'Z' = 90
+'a' = 97
+'z' = 122
+
+*/
 
