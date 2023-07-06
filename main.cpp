@@ -9,11 +9,16 @@ int main() {
 	Character bob = Character("Bobby McGwyar", Boost(1000, 4900, 300, 20));
 	bob.addItem(new Armor("Tank", 400, 6, true));
 	bob.addItem(new Weapon("Death's Sythe", 500, 6, true));
+	bob.addItem(new Weapon("Iron Sword", 30, 2, true));
+	bob.addItem(new Weapon("Golden Staff", 80, 4, true));
+	bob.addItem(new Weapon("Ebony Bow", 95, 4, true));
+	bob.addItem(new Weapon("Plastic Sword", 1, 1, true));
 
-	bob.character_info();
+	//bob.character_info();
+	bob.printBag();
+	bob.equipItem();
 
-	bob._equip_item_(1);
-
+	bob.current_equip();
 
 	return 0;
 	

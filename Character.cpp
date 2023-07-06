@@ -130,7 +130,7 @@ void Character::equipItem(){
 
         if (input >= '1' && input <= char(48 + slot_equip.size())){
             std::cout << "Equipping " << slot_equip[input - 49] << std::endl;
-            //_equip_item(input - 49);
+            _equip_item_(input - 48);
             equip = true;
         }
         else if (input == 'q'){
@@ -144,25 +144,48 @@ void Character::equipItem(){
     } while(!equip);
 }
 void Character::_equip_item_(int type){
-    // 
-    std::vector<Item*> list = filter_items(type + 1);
+    // type is based on the choice of inputs, starting with 1 and ending with slot_equip.size()
+    std::vector<Item*> list = filter_items(type);
 
     if (list.size() == 0){
-        std::cout << "There are no " << slot_equip[type] << " items to equip" << std::endl;
+        std::cout << "There are no " << slot_equip[type - 1] << " items to equip" << std::endl;
         return;
     }
+    bool equip = false;
 
-    for(int i = 0; i < list.size(); ++i){
-        std::cout << i + 1 << ".\t";
-        list.at(i)->item_info();
-    }
+    do{
+        std::cout << "\t" << slot_equip[type - 1] << " Items" << std::endl;
+        for(int i = 0; i < list.size(); ++i){
+            std::cout << i + 1 << ".\t";
+            list.at(i)->item_info();
+            std::cout << std::endl;
+        }
+
+        std::cout << "To cancel 'equipping " << slot_equip[type - 1] << "' enter 'q'" << std::endl;
+        char input;
+        std::cin >> input;
+
+        if (input >= '1' && input <= char(list.size() + 48)){
+            std::cout << list.at(input - 49)->getName() << " has been equipped." << std::endl;
+            equipped[input - 49] = list.at(input - 49);
+            equip = true;
+        }
+        else if (input == 'q'){
+            std::cout << std::endl;
+            equip = true;
+        }
+        else{
+            std::cout << "Invalid Input." << std::endl;
+        }
+    } while (!equip);
     
 }
 std::vector<Item*> Character::filter_items(int t){
-    // Filters the bag based on item_type. Returns all items with item_type == 't'
+    // Filters the bag based on item_type. Returns all items with item_type that is equal to 't'
     std::vector<Item*> equipables;
+
     for(int i = 0; i < bag.size(); ++i){
-        if (bag.at(i)->item_type == t){
+        if (bag.at(i)->item_type == t && bag.at(i)->getEquip() == true){
             equipables.push_back(bag.at(i));
         }
     }
