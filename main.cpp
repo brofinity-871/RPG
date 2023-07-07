@@ -14,11 +14,14 @@ int main() {
 	bob.addItem(new Weapon("Ebony Bow", 95, 4, true));
 	bob.addItem(new Weapon("Plastic Sword", 1, 1, true));
 
-	//bob.character_info();
-	bob.printBag();
+	bob.character_info();
+	//bob.printBag();
+	bob.equipItem();
 	bob.equipItem();
 
 	bob.current_equip();
+
+	bob.character_info();
 
 	return 0;
 	

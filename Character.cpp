@@ -12,23 +12,20 @@ void Character::setName(std::string nm) { character_name = nm; }
 std::string Character::getName() { return character_name; }
 std::vector<Item*> Character::getBag() { return bag; }
 Boost Character::getTraits() { return traits; }
-/*
 Boost Character::total_stats(){
-    std::vector<Item*>::iterator itr = bag.begin();
-    Boost added_stats = Boost(0, 0, 0, 0);
+    Boost total_stats = traits;
 
-    for(itr; itr != bag.end(); ++itr){
-        if((*itr) != nullptr)
-        added_stats.addBoost((*itr)->getBoost());
+    for(int i = 0; i < 4; ++i){
+        if (equipped[i] != nullptr){
+            total_stats.addBoost(equipped[i]->getBoost());
+        }
     }
-    added_stats.addBoost(traits);
 
-    return added_stats;
+    return total_stats;
 }
-*/
 void Character::character_info(){
     std::cout << "\t-" << getName() << " Information-" << std::endl;
-    getTraits().boost_info();
+    total_stats().boost_info();
     printBag();
 }
 void Character::printBag(){
@@ -198,4 +195,5 @@ Character::~Character(){
     }
     bag.clear();
 }
+
 

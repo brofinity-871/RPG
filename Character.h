@@ -29,7 +29,7 @@ public:
     Boost getTraits();
 
     // Character Functions
-    //Boost total_stats();
+    Boost total_stats();
     void character_info();
     void printBag();
     void addItem(Item* itm);
