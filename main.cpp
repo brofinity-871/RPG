@@ -3,8 +3,17 @@
 #include <vector>
 #include "Menu.cpp"
 #include "Character.cpp"
+#include "Spells/Spell.cpp"
 
 int main() {
+
+	Spell* test = new Dud();
+
+	test->spell_info();
+
+	delete test;
+	
+	return 0;
 
 	Character bob = Character("Bobby McGwyar", Boost(1000, 4900, 300, 20));
 	bob.addItem(new Armor("Tank", 400, 6, true));
