@@ -11,7 +11,7 @@
   - Game: goes to {Bag, Map, Nearby, Menu(Quit)}
   - Settings: goes nowhere but back to Game.
   -
-  - 
+  - Bag: goes to {Person, Items, Spellbook, Quit}
   - 
   - 
   - 
@@ -49,6 +49,23 @@ public:
     
 };
 
+class Bag : public Menu{
+private:
+    std::vector<std::string> options = {"Person", "Items", "Spellbook", "Quit"};
+
+
+public:
+    // Constructor
+    Bag();
+    Bag(Character* per);
+
+    // Accessors
+
+
+    // Bag Functions
+    void display_menu();
+    ~Bag();
+};
 
 
 #endif // MENU_H
