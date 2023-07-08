@@ -4,6 +4,20 @@
 #include <iostream>
 #include <vector>
 
+
+/*
+    TYPES OF MENUS
+  - Start: goes to {Game, Settings, Quit}
+  - Game: goes to {Bag, Map, Nearby, Menu(Quit)}
+  - Settings: goes nowhere but back to Game.
+  -
+  - 
+  - 
+  - 
+  - 
+
+*/
+
 class Menu{
 private:
     bool quit = false;
@@ -34,6 +48,7 @@ public:
     ~Start();
     
 };
+
 
 
 #endif // MENU_H

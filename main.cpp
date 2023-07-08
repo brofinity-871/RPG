@@ -4,8 +4,9 @@
 #include "Menu.cpp"
 #include "Character.cpp"
 
-int main() {
 
+
+int main() {
 	Character bob = Character("Bobby McGwyar", Boost(1000, 4900, 300, 20));
 	bob.addItem(new Armor("Tank", 400, 6, true));
 	bob.addItem(new Weapon("Death's Sythe", 500, 6, true));
