@@ -24,28 +24,6 @@ ELEMENTS:
 
 #include <iostream>
 
-std::string print_spell_type(int type){
-    if (type == 0){
-        return "Normal";
-    }
-    else if (type == 1){
-        return "Attack";
-    }
-    else if (type == 2){
-        return "Heal";
-    }
-    else if (type == 3){
-        return "Boost";
-    }
-    else if (type == 4){
-        return "Curse";
-    }
-    else if (type == 5){
-        return "Status";
-    }
-    else
-        return "Unknown";
-}
 std::string print_elem_type(int type){
     if (type == 1){
         return "Fire";
@@ -71,23 +49,24 @@ std::string print_elem_type(int type){
     else
         return "Unknown";
 }
+struct Trait{
+    int cost, damage, heal;
+    Boost boost, curse;
+};
 
 class Spell{
 private:
     std::string spell_name;
-    int spell_type;
     int element_type;
 public:
     // Constructors
     Spell();
-    Spell(std::string nm, int st, int et);
+    Spell(std::string nm, int et);
 
     // Accessors
     void setName(std::string nm);
-    void setSpellType(int t);
     void setElemType(int e);
     std::string getName();
-    int getSpellType();
     int getElemType();
 
     // Spell Functions
