@@ -7,6 +7,14 @@
 
 
 int main() {
+
+	Trait testing = Trait(3, 5, 9, 10, 4, 11, 20, 8);
+
+	testing.addTrait(7, 5, 1, 0, 6, 0, 0, 2);
+	testing.trait_info();
+	std::cout << std::endl;
+	return 0;
+
 	Character bob = Character("Bobby McGwyar", Boost(1000, 4900, 300, 20));
 	bob.addItem(new Armor("Tank", 400, 6, true));
 	bob.addItem(new Weapon("Death's Sythe", 500, 6, true));

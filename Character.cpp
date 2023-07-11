@@ -1,19 +1,19 @@
 #include "Character.h"
 
 Character::Character(){
-    traits = Boost();
+    char_boost = Boost();
     setName("Jone Doe");
 }
 Character::Character(std::string nm, Boost sts){
     setName(nm);
-    traits = sts;
+    char_boost = sts;
 }
 void Character::setName(std::string nm) { character_name = nm; }
 std::string Character::getName() { return character_name; }
 std::vector<Item*> Character::getBag() { return bag; }
-Boost Character::getTraits() { return traits; }
+Boost Character::getTraits() { return char_boost; }
 Boost Character::total_stats(){
-    Boost total_stats = traits;
+    Boost total_stats = char_boost;
 
     for(int i = 0; i < 4; ++i){
         if (equipped[i] != nullptr){

@@ -12,7 +12,7 @@ private:
     std::string character_name;
     int capacity = 10;
     std::vector<Item*> bag;
-    Boost traits;
+    Boost char_boost;
     // need equippable items different from bag
     Item* equipped[4] = {nullptr, nullptr, nullptr, nullptr};   // [0] = armor, [1] = necklace, [2] = ring, [3] = weapon
     

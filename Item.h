@@ -3,17 +3,26 @@
 #define ITEM_H
 
 /*	WELCOME TO ITEM CLASS
-*	ALL ITEMS WILL HAVE 'BOOST' characteristics and used as traits/properties
+*	ALL ITEMS WILL HAVE 'BOOST' characteristics.
 
 This file includes:
-*	- Armor
-*	- Necklace
-*	- Ring
-*	- Weapon
-* 
+*	- Armor 	(Item: Character)
+*	- Necklace  (Item: Character)
+*	- Ring  	(Item: Character)
+*	- Weapon  	(Item: Character)
+* 	- 
 * Plan to include other kinds of items. The 4 above are for equipping onto a character (single)
 * Future items will have additional charactersitcs.
 
+traits: {strength [PHYSICAL] = Body, Might, Brawn, Power; 
+		constituion [PHYSICAL] = Stamina, Endurance, Vitality, Recovery;
+		defense [PHYSICAL] = Resistance, Resilience;
+		dexterity [PHYSICAL] = Agility, Reflexes, Quickness;
+		charisma [MENTAL]= Presence, Charm, Social;
+		perception [MENTAL] = Alertness, Awareness, Cautiousness;
+		wisdom [MENTAL] = Spirit, Wits, Psyche, Sense;
+		luck [MENTAL] = Fate, Chance;
+		}
 
 */	
 
@@ -73,6 +82,77 @@ std::string print_itemType(int t){
 		return "Unknown";
 	}
 }
+
+struct Trait{
+	int strength, constitution, defense, dexterity, charisma, perception, wisdom, luck;
+	Trait(){
+		strength = 0;
+		constitution = 0;
+		defense = 0;
+		dexterity = 0;
+		charisma = 0;
+		perception = 0;
+		wisdom = 0;
+		luck = 0;
+	}
+	Trait(int str, int cnstut, int defen, int dxtrt, int chrsm, int prcpt, int wsdm, int lk){
+		strength = str;
+		constitution = cnstut;
+		defense = defen;
+		dexterity = dxtrt;
+		charisma = chrsm;
+		perception = prcpt;
+		wisdom = wsdm;
+		luck = lk;
+	}
+	void addTrait(int str, int cnstut, int defen, int dxtrt, int chrsm, int prcpt, int wsdm, int lk){
+		strength += str;
+		constitution += cnstut;
+		defense += defen;
+		dexterity += dxtrt;
+		charisma += chrsm;
+		perception += prcpt;
+		wisdom += wsdm;
+		luck += lk;
+	}
+	void addTrait(Trait tr){
+		strength += tr.strength;
+		constitution += tr.constitution;
+		defense += tr.defense;
+		dexterity += tr.dexterity;
+		charisma += tr.charisma;
+		perception += tr.perception;
+		wisdom += tr.wisdom;
+		luck += tr.luck;
+	}
+	void subtractTrait(int str, int cnstut, int defen, int dxtrt, int chrsm, int prcpt, int wsdm, int lk){
+		strength -= str;
+		constitution -= cnstut;
+		defense -= defen;
+		dexterity -= dxtrt;
+		charisma -= chrsm;
+		perception -= prcpt;
+		wisdom -= wsdm;
+		luck -= lk;
+	}
+	void subtractTrait(Trait tr){
+		strength -= tr.strength;
+		constitution -= tr.constitution;
+		defense -= tr.defense;
+		dexterity -= tr.dexterity;
+		charisma -= tr.charisma;
+		perception -= tr.perception;
+		wisdom -= tr.wisdom;
+		luck -= tr.luck;
+	}
+	void trait_info(){
+		std::cout << "\t-Trait Information-" << std::endl;
+		std::cout << "Strength: " << strength << "\tConstitution: " << constitution << std::endl;
+		std::cout << "Defense: " << defense << "\tCharisma: " << charisma << std::endl;
+		std::cout << "Perception: " << perception << "\tWisdom: " << wisdom << std::endl;
+		std::cout << "Luck: " << luck << std::endl;
+	}
+};
 
 struct Boost{
 	// Variables
@@ -135,6 +215,9 @@ private:
 	int rarity;
 	bool equip;
 	Boost stats;
+	// price
+	// traits
+
 public:
 	// Variable 
 	int item_type = 0;

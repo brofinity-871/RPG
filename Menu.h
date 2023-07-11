@@ -57,7 +57,7 @@ private:
 public:
     // Constructor
     Bag();
-    Bag(Character* per);
+    //Bag(Character* per);
 
     // Accessors
 
