@@ -7,6 +7,20 @@
 
 std::vector<std::string> slot_equip = {"Armor", "Necklace", "Ring", "Weapon"};
 
+class character_equip{
+private:
+    std::vector<Item*> equipped;
+public: 
+    // Constructor
+    character_equip();
+
+    // Accesors
+    
+
+    // Functions
+
+};
+
 class Character{
 private:
     std::string character_name;
